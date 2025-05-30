@@ -1,0 +1,31 @@
+{% include 'layouts/header.html' %}
+
+<main class="container py-5">
+    <h2 class="text-center mb-5">📘 {{ lesson.title }}</h2>
+
+    <div class="mb-4 text-center">
+        <span id="current">1</span> / <span id="total">{{ questions|length }}</span>
+        <div class="progress mt-2" style="height: 8px;">
+            <div id="progress-bar" class="progress-bar bg-success" style="width: 0%"></div>
+        </div>
+    </div>
+
+    <div id="questionArea" class="mb-4"></div>
+
+</main>
+
+<script>
+    // không phải lỗi đâu
+    const questions = {{ questions | tojson | safe }};
+    const chapterId = {{ chapter_id }};
+    const lessonId = {{ lesson_id }};
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/hand_model.js') }}"></script>
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+
+{% include 'layouts/footer.html' %}

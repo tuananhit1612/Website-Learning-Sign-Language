@@ -1,0 +1,41 @@
+{% include 'layouts/header.html' %}
+
+<main class="container py-5">
+    <h2 class="text-center mb-5 fw-bold">
+        🧠 Luyện tập Ký hiệu Ngôn ngữ
+    </h2>
+
+    <div class="row g-4">
+        <div class="col-lg-6 position-relative">
+            <div class="border rounded shadow p-3 bg-white">
+                <div class="position-relative">
+                    <video id="video" autoplay playsinline class="w-100 rounded border shadow-sm"></video>
+                </div>
+                <p class="mt-2 mb-1 text-muted text-center small">🎥 Camera đang hoạt động</p>
+                <div class="form-check d-flex justify-content-center">
+                    <input class="form-check-input me-2" type="checkbox" id="drawLandmarks" checked />
+                    <label class="form-check-label" for="drawLandmarks">Vẽ landmarks lên tay</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="border rounded shadow p-4 bg-white h-100 d-flex flex-column">
+                <label for="output" class="form-label fw-bold fs-5 mb-3">📌 Kết quả dự đoán:</label>
+                <textarea id="output" class="form-control fs-4 text-primary" rows="6" placeholder="..."
+                    readonly></textarea>
+                <div class="text-end mt-3">
+                    <button class="btn btn-outline-danger" onclick="clearResult()">🧹 Xóa kết quả</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.min.js"></script>
+<script src="{{ url_for('static', filename='js/hand_model.js') }}"></script>
+<script src="{{ url_for('static', filename='js/practice.js') }}"></script>
+
+{% include 'layouts/footer.html' %}

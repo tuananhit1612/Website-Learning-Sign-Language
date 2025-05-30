@@ -1,0 +1,110 @@
+{% include 'layouts/header.html' %}
+
+<main class="container py-5">
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-6">
+            <h2 class="fw-bold">📚 Từ điển Ký hiệu</h2>
+        </div>
+        <div class="col-md-6">
+            <input type="text" list="suggestions" onkeyup="if(event.key === 'Enter') searchByTitle()" id="search-input" class="form-control" placeholder="🔍 Tìm kiếm từ vựng...">
+            <datalist id="suggestions">
+                {% for video in videos %}
+                <option value="{{ video.title }}">
+                {% endfor %}   
+            </datalist>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="bg-light p-3 rounded shadow-sm">
+                <h5 class="mb-3">📁 Danh mục</h5>
+                <ul class="list-group">
+                    <li class="list-group-item {% if not selected_category %}active{% endif %}">
+                        <a href="{{ url_for('video.videos') }}" class="text-decoration-none text-dark d-block">Tất
+                            cả</a>
+                    </li>
+                    {% for category in categories %}
+                    <li class="list-group-item {% if selected_category == category.id %}active{% endif %}">
+                        <a href="{{ url_for('video.videos_by_category', category_id=category.id) }}"
+                            class="text-decoration-none text-dark d-block">
+                            {{ category.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4" id="card-container">
+                {% if videos|length == 0 %}
+                <img src="https://www.edgecrm.app/images/no-data.gif" alt="Không có video"
+                    class="img-fluid mx-auto d-block" style="width: 60%; height: auto;">
+                {% endif %}
+                {% if videos|length > 0 %}
+                    {% for video in videos %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm" style="cursor:pointer;" data-bs-toggle="modal"
+                            data-bs-target="#videoModal" data-title="{{ video.title }}" data-url="{{ video.video_url }}">
+                            <img src="/static/assets/thumbnails/{{ video.id }}.jpg" class="card-img-top"
+                                alt="{{ video.title }}">
+                            <div class="card-body p-2">
+                                <h6 class="card-title text-center text-truncate" title="{{ video.title }}">{{ video.title }}
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <video id="modalVideo" controls style="width:100%; border-radius: 0.5rem;"></video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const videoModal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const titleEl = document.getElementById('videoModalLabel');
+
+        videoModal.addEventListener('show.bs.modal', function (event) {
+            const card = event.relatedTarget;
+            const title = card.getAttribute('data-title');
+            const url = card.getAttribute('data-url');
+            titleEl.textContent = title;
+            modalVideo.src = url;
+            modalVideo.load();
+        });
+
+        videoModal.addEventListener('hidden.bs.modal', function () {
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+            modalVideo.src = "";
+        });
+    });
+    function searchByTitle() {
+            const value = document.getElementById('search-input').value.trim();
+            if (value) {
+                window.location.href = '/dictionary/title/' + encodeURIComponent(value);
+            }
+    }
+</script>
+
+{% include 'layouts/footer.html' %}     

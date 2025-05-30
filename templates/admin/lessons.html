@@ -1,0 +1,132 @@
+{% include 'layouts/header.html' %}
+
+<main class="container py-5">
+    <h2 class="text-center text-primary mb-4">📚 Quản lý Bài học (Lessons)</h2>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">Thêm bài học mới</div>
+        <div class="card-body">
+            <form action="{{ url_for('admin.add_lesson') }}" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Chọn Chương:</label>
+                    <select name="chapter_id" class="form-select" required>
+                        {% for chapter in chapters %}
+                        <option value="{{ chapter.id }}">{{ chapter.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tiêu đề bài học:</label>
+                    <input type="text" name="title" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nội dung:</label>
+                    <textarea name="content" class="form-control" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Thêm mới</button>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div class="alert-container">
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} mt-2">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white fw-bold">Danh sách bài học</div>
+        <div class="card-body">
+            <table class="table table-hover table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Chương</th>
+                        <th>Tiêu đề</th>
+                        <th>Nội dung</th>
+                        <th>Hành động</th>
+                        <th>Quản lý câu hỏi</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lesson in lessons %}
+                    <tr>
+                        <td>{{ lesson.id }}</td>
+                        <td>{{ lesson.chapter_id }}</td>
+                        <td>{{ lesson.title }}</td>
+                        <td>{{ lesson.content|truncate(50) }}</td>
+                        <td>
+                            <!-- Sửa -->
+                            <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#editModal{{ lesson.id }}">Sửa</button>
+                            <!-- Xóa -->
+                            <form action="{{ url_for('admin.delete_lesson', lesson_id=lesson.id) }}" method="POST"
+                                style="display:inline-block;"
+                                onsubmit="return confirm('Bạn có chắc muốn xoá bài học này?');">
+                                <button type="submit" class="btn btn-sm btn-danger">Xoá</button>
+                            </form>
+
+                            <!-- Modal Edit -->
+                            <div class="modal fade" id="editModal{{ lesson.id }}" tabindex="-1">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <form action="{{ url_for('admin.edit_lesson', lesson_id=lesson.id) }}"
+                                            method="POST">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Chỉnh sửa bài học</h5>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Chọn Chương:</label>
+                                                    <select name="chapter_id" class="form-select" required>
+                                                        {% for chapter in chapters %}
+                                                        <option value="{{ chapter.id }}" {% if
+                                                            chapter.id==lesson.chapter_id %}selected{% endif %}>{{
+                                                            chapter.title }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Tiêu đề:</label>
+                                                    <input type="text" name="title" class="form-control"
+                                                        value="{{ lesson.title }}" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nội dung:</label>
+                                                    <textarea name="content" class="form-control"
+                                                        rows="4">{{ lesson.content }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Hủy</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+                        </td>
+                        <td>
+                            <a href="{{ url_for('admin.manage_questions', lesson_id=lesson.id) }}" class="btn btn-sm btn-info">
+                                Quản lý Câu hỏi
+                            </a>                   
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+{% include 'layouts/footer.html' %}

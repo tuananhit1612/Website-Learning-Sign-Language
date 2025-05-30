@@ -1,0 +1,79 @@
+{% include 'layouts/header.html' %}
+
+<main class="container py-5">
+    <h2 class="text-center text-primary mb-4">
+        📝 Quản lý Câu hỏi - Bài học: {{ lesson.title }}
+    </h2>
+
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">Thêm câu hỏi mới</div>
+        <div class="card-body">
+            <form action="{{ url_for('admin.add_question', lesson_id=lesson.id) }}" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Chọn Video:</label>
+                    <select name="video_id" class="form-select" required>
+                        {% for video in sign_videos %}
+                        <option value="{{ video.id }}">{{ video.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Loại câu hỏi:</label>
+                    <select name="type" class="form-select" required>
+                        <option value="text">Text</option>
+                        <option value="video">Video</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Thêm câu hỏi</button>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div class="alert-container">
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} mt-2">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white fw-bold">Danh sách câu hỏi</div>
+        <div class="card-body">
+            <table class="table table-hover table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Video</th>
+                        <th>Loại</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for question in questions %}
+                    <tr>
+                        <td>{{ question.id }}</td>
+                        <td>{{ question.video.title }} ({{ question.video.id }})</td>
+                        <td>{{ question.type }}</td>
+                        <td>
+                            <!-- Xoá -->
+                            <form
+                                action="{{ url_for('admin.delete_question', lesson_id=lesson.id, question_id=question.id) }}"
+                                method="POST" style="display:inline-block;"
+                                onsubmit="return confirm('Bạn có chắc muốn xoá câu hỏi này?');">
+                                <button type="submit" class="btn btn-sm btn-danger">Xoá</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+{% include 'layouts/footer.html' %}

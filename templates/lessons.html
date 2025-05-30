@@ -1,0 +1,60 @@
+{% include 'layouts/header.html' %}
+
+<main class="container py-5">
+    <div class="sticky-heading bg-white py-3 shadow-sm">
+        <h2 class="text-center mb-0">📘 Chương {{ chapter.id }}: {{ chapter.title }}</h2>
+    </div>
+      
+    <div class="journey-tree">
+        {% set icons = ['cat.png', 'dog.png', 'monkey.png',
+        'rabbit.png','duck.png','fish.png','chicken.png','lion.png','tiger.png'] %}
+    
+        {% for lesson in lessons %}
+        {% set icon = icons|random %}
+        {% set is_unlocked = lesson in unlocked_lessons %}
+        {% set is_current = lesson.id == current_lesson_id %}
+    
+        <div class="tree-row {{ loop.index is even and 'right' or 'left' }}">
+            <div class="connector-line"></div>
+    
+            {% if is_unlocked or is_current %}
+            <a href="{{ url_for('learning.learn_lesson', chapter_id=chapter.id, lesson_id=lesson.id) }}" class="lesson-link">
+
+                <div class="node-wrapper position-relative">
+                    {% if is_current %}
+                    <img src="{{ url_for('static', filename='assets/gif/start.gif') }}" class="current-gif" alt="Current">
+                    {% endif %}
+                    <div class="lesson-node {{ 'unlocked' if is_unlocked else 'locked' }} {{ 'current' if is_current else '' }}">
+                        <div class="icon-wrapper">
+                            <img src="{{ url_for('static', filename='assets/node/' ~ icon) }}" alt="icon">
+                        </div>
+                        <span class="lesson-title"> <b>{{ lesson.title }}</b></span>
+                    </div>
+                </div>
+            </a>
+            {% else %}
+            <div class="lesson-node locked">
+                <div class="icon-wrapper position-relative" style="width:48px; height:48px;">
+                    <img src="{{ url_for('static', filename='assets/node/' ~ icon) }}" alt="icon" style="width:100%; height:100%;">
+                    <img src="{{ url_for('static', filename='assets/lock.png') }}" alt="lock" class="lock-icon"
+                        style="position:absolute; top:0; left:0; width:100%; height:100%;">          </div>
+                <span class="lesson-title"><b>{{ lesson.title }}</b></span>
+            </div>
+            {% endif %}
+
+        </div>
+        {% endfor %}
+    </div>
+    
+      
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentNode = document.querySelector(".lesson-node.current");
+        if (currentNode) {
+            currentNode.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    });
+</script>
+{% include 'layouts/footer.html' %}
