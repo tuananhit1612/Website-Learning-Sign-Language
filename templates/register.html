@@ -1,0 +1,53 @@
+{% include 'layouts/header.html' %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm p-4">
+            <h3 class="text-center mb-4">📝 Đăng ký tài khoản</h3>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="alert-container">
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} mt-2">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('auth.register') }}">
+                <div class="mb-3">
+                    <label class="form-label">👤 Email</label>
+                    <input type="text" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">👤 Tên người dùng</label>
+                    <input type="text" name="name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">🔒 Mật khẩu</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">🔒 Xác nhận mật khẩu</label>
+                    <input type="password" name="confirm_password" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">🚀 Đăng ký</button>
+            </form>
+            <div class="d-grid mb-3 mt-3">
+                <a href="http://localhost:5000/login/google"
+                    class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2" style="height: 44px;">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style="width: 24px; height: 24px;">
+                    <span class="fw-semibold">Đăng nhập với Google</span>
+                </a>
+            </div>
+            <div class="text-center mt-3">
+                <small>Đã có tài khoản? <a href="{{ url_for('auth.login') }}">Đăng nhập</a></small>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'layouts/footer.html' %}

@@ -1,0 +1,12 @@
+flask
+flask_sqlalchemy
+flask_cors
+tensorflow
+scikit-learn
+pandas
+numpy
+mysqlclient
+pymysql
+cryptography
+torch
+Authlib

@@ -1,0 +1,48 @@
+{% include 'layouts/header.html' %}
+
+<main class="container py-5">
+    <h2 class="text-center mb-4">📘 Các bài học</h2>
+
+    <div class="alert alert-info text-center">
+        🚀 Hãy chọn một bài học để khám phá ngôn ngữ ký hiệu. Các bài học được sắp xếp theo chủ đề giúp bạn dễ tiếp cận
+        và luyện tập hiệu quả.
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+        {% for chapter in chapters %}
+        <div class="col">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="ratio ratio-1x1">
+                    <img src="{{ chapter.image or '/static/images/default_thumb.jpg' }}"
+                        class="card-img-top object-fit-cover" alt="{{ chapter.title }}"
+                        style="object-fit: cover; border-top-left-radius: .5rem; border-top-right-radius: .5rem;">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h6 class="card-title text-primary fw-bold mb-2">Chương {{ chapter.id }}: {{ chapter.title }}</h6>
+                    <p class="card-text small text-muted">{{ chapter.description }}</p>
+                    <a href="{{ url_for('learning.lessons_by_chapter', chapter_id=chapter.id) }}"
+                        class="btn btn-outline-primary btn-sm mt-auto">Bắt đầu</a>
+                    <span class="badge mt-2
+            {% if chapter.id in completed_chapters %}
+              bg-success
+            {% elif chapter.id in in_progress_chapters %}
+              bg-warning text-dark
+            {% else %}
+              bg-secondary
+            {% endif %}">
+                        {% if chapter.id in completed_chapters %}
+                        ✅ Đã hoàn thành
+                        {% elif chapter.id in in_progress_chapters %}
+                        🔄 Đang học
+                        {% else %}
+                        ⏳ Chưa học
+                        {% endif %}<br>
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+{% include 'layouts/footer.html' %}

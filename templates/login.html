@@ -1,0 +1,48 @@
+{% include 'layouts/header.html' %}
+<main class="main-content py-5">
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+        <div class="card shadow p-4" style="width: 100%; max-width: 400px;">
+            <h3 class="text-center mb-4">🔐 Đăng nhập</h3>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="alert-container">
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} mt-2">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+            <form action="{{ url_for('auth.login') }}" method="POST">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Nhập email"
+                        required />
+                </div>
+                
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mật khẩu:</label>
+                    <input type="password" id="password" name="password" class="form-control"
+                        placeholder="Nhập mật khẩu" required />
+                </div>
+
+                <div class="d-grid mb-3">
+                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+                </div>
+                <div class="d-grid mb-3">
+                    <a href="http://localhost:5000/login/google"
+                        class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2" style="height: 44px;">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style="width: 24px; height: 24px;">
+                        <span class="fw-semibold">Đăng nhập với Google</span>
+                    </a>          
+                </div>
+                <div class="text-center">
+                    <a href="forgot.html" class="d-block mb-1">🔁 Quên mật khẩu?</a>
+                    <a href="{{ url_for('auth.register') }}">📝 Chưa có tài khoản? Đăng ký</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    </main>
+    {% include 'layouts/footer.html' %}

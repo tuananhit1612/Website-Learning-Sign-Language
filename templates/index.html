@@ -1,0 +1,467 @@
+{% include 'layouts/header.html' %}
+<section class="text-white text-center py-5 shadow" style="
+        background: linear-gradient(
+            rgba(1, 60, 255, 0.7),
+            rgba(92, 41, 233, 0.5)
+          ),
+          url('../image/hero-signlanguage.jpg') no-repeat center center;
+        background-size: cover;
+        background-attachment: fixed;
+      ">
+    <div class="container py-5">
+        <h1 class="display-4 fw-bold mb-4" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.5);">
+            Học Ký Hiệu Ngôn Ngữ - Cầu nối yêu thương
+        </h1>
+        <p class="lead mb-4" style="max-width: 700px; margin: 0 auto; text-shadow: 1px 1px 6px rgba(0,0,0,0.4);">
+            Website hỗ trợ học ngôn ngữ ký hiệu miễn phí, kết nối cộng đồng người nghe và người khiếm thính.
+        </p>
+        <a href="{{ url_for('learning.learn') }}" class="btn btn-light btn-lg mt-3 rounded-pill px-5 py-2 shadow-sm"
+            style="transition: all 0.3s;">
+            <i class="bi bi-book-fill me-2"></i> Bắt đầu học ngay
+        </a>
+    </div>
+</section>
+
+
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                <img src="/static/assets/why.gif" alt="Vì sao Học Ký Hiệu Ngôn Ngữ" class="img-fluid rounded shadow" />
+            </div>
+
+
+            <div class="col-lg-6" data-aos="fade-left">
+                <h2 class="text-primary fw-bold mb-4">
+                    <i class="bi bi-question-circle-fill me-2"></i>Vì sao bạn nên học
+                    ngôn ngữ ký hiệu?
+                </h2>
+                <ul class="list-unstyled fs-5">
+                    <li class="mb-4 d-flex">
+                        <i class="bi bi-heart-fill text-info fs-4 me-3"></i>
+                        <div>
+                            <strong>Xây dựng sự thấu hiểu</strong><br />
+                            Giao tiếp hiệu quả hơn với người khiếm thính và lan tỏa sự
+                            đồng cảm trong cộng đồng.
+                        </div>
+                    </li>
+                    <li class="mb-4 d-flex">
+                        <i class="bi bi-people-fill text-success fs-4 me-3"></i>
+                        <div>
+                            <strong>Cơ hội nghề nghiệp</strong><br />
+                            Kỹ năng thủ ngữ được đánh giá cao trong giáo dục, y tế và công
+                            tác xã hội.
+                        </div>
+                    </li>
+                    <li class="mb-4 d-flex">
+                        <i class="bi bi-globe-americas text-primary fs-4 me-3"></i>
+                        <div>
+                            <strong>Vì một xã hội hòa nhập</strong><br />
+                            Cùng nhau xây dựng một thế giới nơi ai cũng được lắng nghe và
+                            kết nối.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center text-primary mb-5 fw-bold" data-aos="fade-up">
+            <i class="bi bi-stars me-2"></i>Giá trị mà Học Ký Hiệu Ngôn Ngữ mang lại
+        </h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="zoom-in">
+                <div class="card h-100 text-center border-0 shadow-sm rounded-4 p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-camera-video-fill display-4 text-info"></i>
+                    </div>
+                    <h5 class="fw-semibold mb-2">Video trực quan</h5>
+                    <p class="text-muted">
+                        Học Ký Hiệu Ngôn Ngữ bằng video minh họa giúp bạn ghi nhớ lâu và dễ áp
+                        dụng trong thực tế.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
+                <div class="card h-100 text-center border-0 shadow-sm rounded-4 p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-chat-dots-fill display-4 text-success"></i>
+                    </div>
+                    <h5 class="fw-semibold mb-2">Tăng giao tiếp</h5>
+                    <p class="text-muted">
+                        Tăng khả năng kết nối và đồng cảm với người khiếm thính qua giao
+                        tiếp gần gũi.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card h-100 text-center border-0 shadow-sm rounded-4 p-4">
+                    <div class="mb-3">
+                        <i class="bi bi-emoji-smile-fill display-4 text-warning"></i>
+                    </div>
+                    <h5 class="fw-semibold mb-2">Thân thiện & dễ dùng</h5>
+                    <p class="text-muted">
+                        Thiết kế giao diện đơn giản, trực quan, hỗ trợ mọi độ tuổi và
+                        thiết bị sử dụng.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center fw-bold text-primary mb-5" data-aos="fade-up">
+            <i class="bi bi-signpost-2-fill me-2"></i>Lộ trình Học Ký Hiệu Ngôn Ngữ
+        </h2>
+        <div class="row g-4">
+            <div class="col-md-3 text-center" data-aos="fade-up">
+                <i class="bi bi-1-circle-fill fs-1 text-info"></i>
+                <h5 class="fw-semibold mt-3">Cấp độ 1</h5>
+                <p class="text-muted">
+                    Làm quen với bảng chữ cái, số và lời chào cơ bản.
+                </p>
+            </div>
+            <div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="100">
+                <i class="bi bi-2-circle-fill fs-1 text-success"></i>
+                <h5 class="fw-semibold mt-3">Cấp độ 2</h5>
+                <p class="text-muted">
+                    Thủ ngữ theo chủ đề: gia đình, trường học, cảm xúc…
+                </p>
+            </div>
+            <div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-3-circle-fill fs-1 text-warning"></i>
+                <h5 class="fw-semibold mt-3">Cấp độ 3</h5>
+                <p class="text-muted">
+                    Hội thoại nâng cao, tình huống thực tế & nghề nghiệp.
+                </p>
+            </div>
+            <div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-4-circle-fill fs-1 text-danger"></i>
+                <h5 class="fw-semibold mt-3">Cấp độ 4</h5>
+                <p class="text-muted">
+                    Phiên dịch tình nguyện, kết nối cộng đồng khiếm thính.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-5 bg-white">
+    <div class="container">
+        <h2 class="text-center fw-bold text-primary mb-5" data-aos="fade-up">
+            <i class="bi bi-tools me-2"></i>Chức năng nổi bật của Học Ngôn Ngữ Ký Hiệu Việt Nam
+        </h2>
+        <div class="row g-4">
+
+            <div class="col-md-4" data-aos="zoom-in">
+                <div class="card border-0 shadow-lg rounded-4 text-center p-4 h-100">
+                    <div class="mb-3">
+                        <i class="bi bi-camera-reels-fill display-4 text-danger"></i>
+                    </div>
+                    <h5 class="fw-semibold mb-2">Luyện tập qua Camera & AI</h5>
+                    <p class="text-muted mb-3">
+                        Sử dụng <strong>trí tuệ nhân tạo</strong> (AI) và mô hình <strong>Deep Learning
+                            Siformer</strong> để nhận diện cử động tay qua camera và chuyển thành văn bản.
+                    </p>
+                    <a href="{{ url_for('practice') }}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                        <i class="bi bi-controller me-1"></i> Vào luyện tập
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="150">
+                <div class="card border-0 shadow-lg rounded-4 text-center p-4 h-100">
+                    <div class="mb-3">
+                        <i class="bi bi-book-fill display-4 text-success"></i>
+                    </div>
+                    <h5 class="fw-semibold mb-2">Từ điển ký hiệu ngôn ngữ</h5>
+                    <p class="text-muted mb-3">
+                        Thư viện <strong>video minh họa</strong> từng ký hiệu, giúp bạn dễ dàng tra cứu và học ký hiệu
+                        chính xác.
+                    </p>
+                    <a href="{{ url_for('dictionary') }}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                        <i class="bi bi-book me-1"></i> Xem từ điển
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                <div class="card border-0 shadow-lg rounded-4 text-center p-4 h-100">
+                    <div class="mb-3">
+                        <i class="bi bi-mortarboard-fill display-4 text-warning"></i>
+                    </div>
+                    <h5 class="fw-semibold mb-2">Chương trình học theo cấp độ</h5>
+                    <p class="text-muted mb-3">
+                        Các <strong>chương học phân cấp</strong> từ dễ đến khó, mỗi chương gồm nhiều bài học có bài tập
+                        dạng text và video kiểm tra kỹ năng.
+                    </p>
+                    <a href="{{ url_for('learning.learn') }}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                        <i class="bi bi-mortarboard me-1"></i> Vào học tập
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="py-5 bg-white">
+    <div class="container">
+        <h2 class="text-center text-primary fw-bold mb-5" data-aos="fade-up">
+            <i class="bi bi-lightbulb-fill me-2"></i>Cách sử dụng nền tảng
+        </h2>
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="list-group list-group-flush fs-5">
+                    <div class="list-group-item border-0 d-flex align-items-start">
+                        <i class="bi bi-person-plus-fill fs-4 text-primary me-3"></i>
+                        <div>
+                            <strong>Tạo tài khoản miễn phí</strong><br />
+                            Đăng ký nhanh chóng để theo dõi tiến trình và lưu bài học yêu
+                            thích.
+                        </div>
+                    </div>
+                    <div class="list-group-item border-0 d-flex align-items-start">
+                        <i class="bi bi-search fs-4 text-success me-3"></i>
+                        <div>
+                            <strong>Tìm bài học theo chủ đề</strong><br />
+                            Lựa chọn các chủ đề bạn quan tâm như gia đình, học đường, cảm
+                            xúc…
+                        </div>
+                    </div>
+                    <div class="list-group-item border-0 d-flex align-items-start">
+                        <i class="bi bi-play-circle-fill fs-4 text-danger me-3"></i>
+                        <div>
+                            <strong>Xem video và học ký hiệu</strong><br />
+                            Mỗi bài học đều có minh họa video rõ ràng, dễ hiểu và dễ thực
+                            hành.
+                        </div>
+                    </div>
+                    <div class="list-group-item border-0 d-flex align-items-start">
+                        <i class="bi bi-patch-question-fill fs-4 text-warning me-3"></i>
+                        <div>
+                            <strong>Làm quiz để củng cố kiến thức</strong><br />
+                            Kiểm tra nhanh kiến thức vừa học và tích lũy điểm kỹ năng.
+                        </div>
+                    </div>
+                    <div class="list-group-item border-0 d-flex align-items-start">
+                        <i class="bi bi-bar-chart-fill fs-4 text-info me-3"></i>
+                        <div>
+                            <strong>Theo dõi tiến trình học tập</strong><br />
+                            Xem biểu đồ tiến bộ của bạn qua từng cấp độ.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 text-center" data-aos="fade-left">
+                <div class="ratio ratio-16x9 shadow rounded">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/-dPVA7RXyxc?si=xJ-VO1yJC8gTzPFL"
+                        title="Giới thiệu học ngôn ngữ ký hiệu" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <p class="text-muted mt-2 small">
+                    Nguồn: YouTube - TokyoLife Channel
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center text-primary fw-bold mb-5" data-aos="fade-up">
+            <i class="bi bi-question-circle-fill me-2"></i>Câu hỏi thường gặp
+        </h2>
+
+        <div class="accordion accordion-flush" id="faqAccordion">
+            <div class="accordion-item border rounded mb-3 shadow-sm">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
+                        aria-expanded="true">
+                        <i class="bi bi-book-fill text-primary me-2"></i> Học Ký Hiệu Ngôn Ngữ có
+                        khó không?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Không! Với video minh họa trực quan và bài luyện tập, bất kỳ ai
+                        cũng có thể học dần dần một cách tự nhiên.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item border rounded mb-3 shadow-sm">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faq2">
+                        <i class="bi bi-person-circle text-success me-2"></i> Tôi có cần
+                        tài khoản để học không?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Bạn có thể bắt đầu học mà không cần tài khoản. Tuy nhiên, đăng
+                        ký sẽ giúp bạn theo dõi tiến trình và lưu kết quả học tập.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item border rounded mb-3 shadow-sm">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faq3">
+                        <i class="bi bi-clock-history text-warning me-2"></i> Mất bao
+                        lâu để giao tiếp cơ bản?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Nếu luyện tập mỗi ngày 15–30 phút, bạn có thể giao tiếp cơ bản
+                        sau khoảng 4–6 tuần.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item border rounded mb-3 shadow-sm">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faq4">
+                        <i class="bi bi-phone-fill text-danger me-2"></i> Trang web có
+                        dùng được trên điện thoại không?
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Hoàn toàn có thể! Giao diện được tối ưu cho mọi thiết bị như
+                        điện thoại, máy tính bảng và PC.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item border rounded mb-3 shadow-sm">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faq5">
+                        <i class="bi bi-patch-check-fill text-info me-2"></i> Các bài
+                        học có kiểm tra đánh giá không?
+                    </button>
+                </h2>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Có! Sau mỗi nhóm bài, bạn có thể làm quiz và bài thực hành để
+                        kiểm tra hiểu biết và củng cố kiến thức.
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item border rounded mb-3 shadow-sm">
+                <h2 class="accordion-header" id="headingSix">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#faq6">
+                        <i class="bi bi-people-fill text-secondary me-2"></i> Trang web
+                        có hỗ trợ người khiếm thính không?
+                    </button>
+                </h2>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Chắc chắn! Website được thiết kế với màu sắc rõ ràng, video minh
+                        họa và nội dung dễ hiểu – thân thiện với mọi đối tượng.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-white">
+    <div class="container">
+        <h2 class="text-center text-primary fw-bold mb-5" data-aos="fade-down">
+            <i class="bi bi-people-fill me-2"></i>Đội ngũ sáng lập
+        </h2>
+        <div class="row justify-content-center g-4">
+
+            <div class="col-md-4 col-lg-3" data-aos="flip-left">
+                <div class="card border-0 shadow-lg rounded-4 text-center py-4 h-100">
+                    <img src="/static/assets/ttd.png" class="rounded-circle mx-auto mb-3 shadow" width="150" height="150"
+                        style="border: 5px solid #e9ecef; transition: transform 0.3s"
+                        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
+                        alt="Trần Tấn Đạt" />
+                    <div class="card-body">
+                        <h5 class="fw-bold mb-1">Trần Tấn Đạt</h5>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-lg-3" data-aos="flip-right" data-aos-delay="150">
+                <div class="card border-0 shadow-lg rounded-4 text-center py-4 h-100">
+                    <a href="https://www.facebook.com/xTTAx" target="_blank">
+                        <img src="/static/assets/tta.png" class="rounded-circle mx-auto mb-3 shadow" width="150" height="150"
+                            style="border: 5px solid #e9ecef; transition: transform 0.3s"
+                            onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'"
+                            alt="Trần Tuấn Anh" />
+                    </a>
+                    <div class="card-body">
+                        <h5 class="fw-bold mb-1">Trần Tuấn Anh</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center text-dark fw-bold mb-5" data-aos="fade-up">
+            <i class="bi bi-cpu me-2 text-primary"></i>Công nghệ được sử dụng
+        </h2>
+        <div class="row g-4 justify-content-center">
+            <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in">
+                <div class="bg-white rounded-4 shadow-sm py-4 text-center h-100">
+                    <img src="/static/assets/python.png" class="mb-2" alt="Python" style="width:48px; height:48px;">
+                    <p class="mt-2 fw-semibold">Python</p>
+                </div>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="100">
+                <div class="bg-white rounded-4 shadow-sm py-4 text-center h-100">
+                    <img src="/static/assets/hcj.jpg" class="mb-2" alt="HTML/CSS/JS" style="width:48px; height:48px;">
+                    <p class="mt-2 fw-semibold">HTML/CSS/JS</p>
+                </div>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="300">
+                <div class="bg-white rounded-4 shadow-sm py-4 text-center h-100">
+                    <i class="bi bi-bootstrap-fill fs-1 text-purple"></i>
+                    <p class="mt-2 fw-semibold">Bootstrap</p>
+                </div>
+            </div>
+            
+            <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="500">
+                <div class="bg-white rounded-4 shadow-sm py-4 text-center h-100">
+                    <img src="/static/assets/mediapipe.png" class="mb-2"alt="Mediapipe" style="width:48px; height:48px;">
+                    <p class="mt-2 fw-semibold">Mediapipe</p>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-4 col-lg-2" data-aos="zoom-in" data-aos-delay="500">
+                <div class="bg-white rounded-4 shadow-sm py-4 text-center h-100">
+                    <i class="bi bi-cpu fs-1 text-info"></i>
+                    <p class="mt-2 fw-semibold">Deep Learning</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% include 'layouts/footer.html' %}
