@@ -47,7 +47,7 @@ function renderQuestion() {
   } else if (q.type === "video") {
     html += `
       <p class="fs-5">📺 Xem video và nhập ký hiệu bạn thấy:</p>
-      <div class="mx-auto" style="width: 800px; max-width: 100%; weight: 100%;">
+      <div class="mx-auto" style="width: 800px; max-width: 100%;">
         <video controls src="${q.video.url}" class="rounded shadow mb-3 w-100" style="max-height: 400px; object-fit: contain;"></video>
         <input type="text" id="text-answer" class="form-control fs-5 text-center mb-3" placeholder="Nhập đáp án...">
         <div class="d-flex justify-content-center gap-3 mb-3">
@@ -56,8 +56,17 @@ function renderQuestion() {
         </div>
       </div>
     `;
+  } else if (q.type === "learning") {
+    html += `
+      <p class="fs-5">📖 Xem - ghi nhớ ký hiệu: <strong>${q.video.title}</strong></p>
+      <div class="mx-auto text-center" style="width: 800px; max-width: 100%;">
+        <video controls src="${q.video.url}" class="rounded shadow mb-3 w-100" style="max-height: 400px; object-fit: contain;"></video>
+        <div class="d-flex justify-content-center">
+          <button onclick="nextQuestion()" class="btn btn-primary px-4">➡️ Tiếp theo</button>
+        </div>
+      </div>
+    `;
   }
-  
 
   html += `</div>`;
   questionArea.innerHTML = html;
@@ -66,6 +75,7 @@ function renderQuestion() {
     initHandModel();
   }
 }
+
 function getChapterUrl() {
   const parts = window.location.pathname.split("/");
   if (parts.length >= 3) {

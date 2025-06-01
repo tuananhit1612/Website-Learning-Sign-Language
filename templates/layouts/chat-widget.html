@@ -1,0 +1,55 @@
+<div id="chat-widget-button" style="background: none;">
+    <button id="chat-toggle-btn" style="
+        border: none;
+        outline: none;
+        padding: 0;
+        cursor: pointer;
+        background: none;">
+        <img src="/static/assets/gif/chatbox.gif" alt="Chat" style="width: 150px; height: 150px; display: block;">
+    </button>
+</div>
+
+
+
+<!-- Chat Widget -->
+<div id="chat-widget" class="card shadow-lg"
+    style="display: none; opacity: 0; transform: translateY(20px); pointer-events: none;">
+
+
+    <!-- Header -->
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+        style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
+        <span class="fw-bold fs-5 d-flex align-items-center"><i class="bi bi-robot me-2"></i> Trợ lý AI</span>
+        <div>
+            <button type="button" class="btn btn-sm btn-light me-2" id="chat-clear-btn">🗑️</button>
+            <button type="button" class="btn-close btn-close-white" id="chat-close-btn"></button>
+        </div>
+    </div>
+
+    <!-- Body -->
+    <div id="chat-body" class="card-body overflow-auto"></div>
+
+    <!-- Suggestions -->
+    <div id="chat-suggestions">
+        <button class="btn btn-outline-primary btn-sm" onclick="sendSuggestion('Xin chào')">Xin chào</button>
+        <button class="btn btn-outline-primary btn-sm" onclick="sendSuggestion('Tôi muốn học ngôn ngữ ký hiệu')">Tôi
+            muốn học ngôn ngữ ký hiệu</button>
+        <button class="btn btn-outline-primary btn-sm" onclick="sendSuggestion('Hướng dẫn sử dụng website Ngôn ngữ ký hiệu việt nam')">Hướng dẫn sử dụng website Ngôn ngữ ký hiệu việt nam</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer p-3 bg-white">
+        <div class="input-group">
+            <input type="text" id="chat-input" class="form-control form-control-lg" placeholder="Nhập câu hỏi...">
+            <button type="button" class="btn btn-primary btn-lg ms-2 px-4" id="chat-send-btn">Gửi</button>
+
+        </div>
+    </div>
+</div>
+<script>
+    const USER_ID = "{{ session.get('user_id') }}";
+</script>
+<!-- Import CSS & JS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat-widget.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="{{ url_for('static', filename='js/chat-widget.js') }}"></script>

@@ -12,14 +12,17 @@ window.initHandModel = function () {
   let sentence = [];
 
   const canvasElement = document.createElement("canvas");
+  canvasElement.width = 640;
+  canvasElement.height = 480;
   canvasElement.style.position = "absolute";
   canvasElement.style.left = "0";
   canvasElement.style.top = "0";
   canvasElement.style.zIndex = "10";
-  videoElement.parentElement.style.position = "relative";
+  canvasElement.style.pointerEvents = "none";
+  
   videoElement.parentElement.appendChild(canvasElement);
   const canvasCtx = canvasElement.getContext("2d");
-
+  
   function updateCanvasSize() {
     canvasElement.width = videoElement.videoWidth;
     canvasElement.height = videoElement.videoHeight;
@@ -103,7 +106,7 @@ window.initHandModel = function () {
       return;
     }
 
-    updateCanvasSize();
+
 
     if (drawCheckbox && drawCheckbox.checked) {
       canvasCtx.save();
@@ -151,13 +154,14 @@ window.initHandModel = function () {
       alert("Không thể truy cập camera. Vui lòng cho phép quyền camera.");
     }
   }
-
+  canvasElement.classList.add('video-canvas');
   const camera = new Camera(videoElement, {
     onFrame: async () => {
       await hands.send({ image: videoElement });
     },
     width: 640,
     height: 480,
+    
   });
   if (videoElement) {
       startCamera();

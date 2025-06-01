@@ -23,6 +23,7 @@
                     <select name="type" class="form-select" required>
                         <option value="text">Text</option>
                         <option value="video">Video</option>
+                        <option value="learning">Learning</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-success">Thêm câu hỏi</button>
@@ -60,7 +61,7 @@
                         <td>{{ question.video.title }} ({{ question.video.id }})</td>
                         <td>{{ question.type }}</td>
                         <td>
-                            <!-- Xoá -->
+
                             <form
                                 action="{{ url_for('admin.delete_question', lesson_id=lesson.id, question_id=question.id) }}"
                                 method="POST" style="display:inline-block;"

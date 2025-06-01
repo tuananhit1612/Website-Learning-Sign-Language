@@ -1,0 +1,126 @@
+
+#chat-widget-button {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+}
+
+#chat-widget {
+    position: fixed;
+    bottom: 100px;
+    right: 24px;
+    width: 450px;
+    max-width: 90vw;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+    border-radius: 16px;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: all 0.35s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+#chat-body {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #f9f9f9;
+    font-size: 0.95rem;
+    overflow-y: auto;
+}
+
+#chat-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    right: 20px;
+    position: fixed;
+    bottom: 90px;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: #ffffff;
+    border-top: 1px solid #ffffff;
+}
+
+
+.chat-message.user {
+    display: flex;
+    justify-content: flex-end;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.chat-message.user .chat-bubble {
+    background-color: #00aeff;
+    color: #212529;
+    padding: 12px 16px;
+    border-radius: 18px 18px 4px 18px;
+    max-width: 75%;
+    word-wrap: break-word;
+    font-size: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s;
+}
+
+.chat-message.bot {
+    display: flex;
+    justify-content: flex-start;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.chat-message.bot .chat-bubble {
+    background-color: #f0f0f0;
+    color: #212529;
+    padding: 12px 16px;
+    border-radius: 18px 18px 18px 4px;
+    max-width: 75%;
+    word-wrap: break-word;
+    font-size: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
+}
+
+/* Typing bubble */
+.chat-bubble.typing {
+    background-color: #f0f0f0;
+    color: #6c757d;
+    font-style: italic;
+    animation: pulse 1.5s infinite, fadeIn 0.3s ease-in-out;
+    padding: 12px 16px;
+    border-radius: 18px 18px 18px 4px;
+    max-width: 60%;
+    word-wrap: break-word;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
