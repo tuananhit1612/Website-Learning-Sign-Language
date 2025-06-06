@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isOpen = chatWidget.style.display !== 'none';
         if (forceOpen || !isOpen) {
             chatWidget.style.display = 'flex';
-            chatWidget.style.pointerEvents = 'auto'; // ✅ thêm dòng này!
+            chatWidget.style.pointerEvents = 'auto'; 
     
             if (isFirstOpen) {
                 chatSuggestions.style.display = 'flex';
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             chatWidget.style.opacity = 0;
             chatWidget.style.transform = 'translateY(20px)';
-            chatWidget.style.pointerEvents = 'none'; // ✅ thêm dòng này!
+            chatWidget.style.pointerEvents = 'none'; 
             chatSuggestions.style.display = 'none';
     
             setTimeout(() => {
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(err => {
                 console.error(err);
                 hideTyping();
-                appendMessage('⚠️ Lỗi khi kết nối AI Agent.', 'bot');
+                appendMessage('Lỗi khi kết nối AI Agent.', 'bot');
             });
         }, 300);
     }

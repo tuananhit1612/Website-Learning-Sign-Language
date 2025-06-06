@@ -13,7 +13,7 @@ LABELMAP_PATH = "./static/model/label_map.pkl"
 
 NUM_CLASSES = 99
 SEQ_LEN = 50
-THRESHOLD = 0.5
+THRESHOLD = 0.7
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 mean = stats["mean"]

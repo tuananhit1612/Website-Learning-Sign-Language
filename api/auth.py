@@ -73,6 +73,7 @@ def login():
         session["user_id"] = user.id
         session["role"] = user.role
         session["username"] = user.name
+        session["avatar_url"] = user.avatar_url
         flash("Đăng nhập thành công!", "success")
         return redirect(url_for("home"))
 
@@ -94,9 +95,19 @@ def register():
             flash("Mật khẩu không khớp!", "danger")
             return redirect(url_for("auth.register"))
 
-        if User.query.filter_by(email=email).first():
-            flash("Email đã tồn tại!", "danger")
-            return redirect(url_for("auth.register"))
+        existing_user = User.query.filter_by(email=email).first()
+
+        if existing_user:
+            if existing_user.google_id:
+                existing_user.name = name 
+                existing_user.password = generate_password_hash(password)
+                db.session.commit()
+
+                flash("Tài khoản đã được liên kết với Google, giờ bạn có thể đăng nhập bằng mật khẩu!", "success")
+                return redirect(url_for("auth.login"))
+            else:
+                flash("Email đã tồn tại!", "danger")
+                return redirect(url_for("auth.register"))
 
         hashed_pw = generate_password_hash(password)
         new_user = User(name=name, email=email, password=hashed_pw)
@@ -107,6 +118,7 @@ def register():
         return redirect(url_for("auth.login"))
 
     return render_template("register.html")
+
 
 @auth_bp.route("/logout")
 def logout():

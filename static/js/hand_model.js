@@ -47,10 +47,9 @@ window.initHandModel = function () {
 
       if (!response.ok) {
         const err = await response.text();
-        console.error("\u274C Server error:", err);
+        console.error("Server error:", err);
         return null;
       }
-      console.log("\u2705 Dữ liệu đã được gửi thành công đến server");
 
       const data = await response.json();
       return {
@@ -65,20 +64,31 @@ window.initHandModel = function () {
 
 
   function updateSentence(predictedLabel, confidence) {
+    console.log(predictedLabel + " - " + confidence);
+  
     if (confidence > CONF_THRESHOLD) {
       predictions.push(predictedLabel);
-      const recent10 = predictions.slice(-10);
-      const isStable = recent10.every(label => label === predictedLabel);
-
-      if (isStable) {
+      predictions = predictions.slice(-10);
+  
+      const counts = {};
+      predictions.forEach(label => {
+        counts[label] = (counts[label] || 0) + 1;
+      });
+  
+      const sortedLabels = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      const [mostFrequentLabel, freq] = sortedLabels[0];
+  
+  
+      if (freq >= 6) {
         const lastWord = sentence[sentence.length - 1];
-        if (predictedLabel !== lastWord) {
-          sentence.push(predictedLabel);
+        if (mostFrequentLabel !== lastWord) {
+          sentence.push(mostFrequentLabel);
           outputElement.value = sentence.join(" ");
         }
       }
     }
   }
+  
 
   function clearResult() {
       if (sentence.length > 0) {
@@ -103,6 +113,8 @@ window.initHandModel = function () {
   hands.onResults(async (results) => {
     if (!results.multiHandLandmarks || results.multiHandLandmarks.length === 0) {
       canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+      sequence = [];
+      predictions = [];
       return;
     }
 

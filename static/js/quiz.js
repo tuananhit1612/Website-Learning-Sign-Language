@@ -24,49 +24,55 @@ function renderQuestion() {
   if (q.type === "text") {
     html += `
       <p class="fs-5">👉 Thực hiện ký hiệu cho: <strong>${q.video.title}</strong></p>
-      <div class="row justify-content-center g-4">
-        <div class="col-lg-6 col-md-8">
-          <label class="form-label">🎯 Kết quả dự đoán:</label>
-          <input type="text" id="output" class="form-control fs-4 text-center mb-3">
-          <div class="d-flex justify-content-center gap-3 mb-3">
-            <button onclick="checkTextAnswer()" class="btn btn-success px-4" id="submit-btn">✅ Kiểm tra</button>
-            <button onclick="clearLastResult()" class="btn btn-outline-secondary px-4">🗑 Xoá từ</button>
-          </div>
-          <div class="text-center">
-            <button id="next-btn" onclick="nextQuestion()" class="btn btn-primary px-4 d-none">➡️ Tiếp theo</button>
-          </div>
-        </div>
+      <div class="row g-4 align-items-center">
         <div class="col-md-6">
           <div class="position-relative text-center">
-            <video id="video" autoplay playsinline class="rounded border shadow w-100"></video>
+            <div class="video-container mb-3">
+                    <video id="video" autoplay playsinline></video>
+                </div>
+            <div class="form-check d-flex justify-content-center my-2">
+              <input class="form-check-input me-2" type="checkbox" id="drawLandmarks" checked />
+              <label class="form-check-label" for="drawLandmarks">Vẽ landmarks lên tay</label>
+            </div>
             <canvas id="canvas" class="position-absolute top-0 start-0 w-100 h-100" style="z-index: 10;"></canvas>
           </div>
         </div>
-      </div>
-    `;
-  } else if (q.type === "video") {
-    html += `
-      <p class="fs-5">📺 Xem video và nhập ký hiệu bạn thấy:</p>
-      <div class="mx-auto" style="width: 800px; max-width: 100%;">
-        <video controls src="${q.video.url}" class="rounded shadow mb-3 w-100" style="max-height: 400px; object-fit: contain;"></video>
-        <input type="text" id="text-answer" class="form-control fs-5 text-center mb-3" placeholder="Nhập đáp án...">
-        <div class="d-flex justify-content-center gap-3 mb-3">
-          <button onclick="checkVideoAnswer('${q.video.title}')" class="btn btn-success px-4" id="submit-btn">✅ Kiểm tra</button>
-          <button id="next-btn" onclick="nextQuestion()" class="btn btn-primary px-4 d-none">➡️ Tiếp theo</button>
-        </div>
-      </div>
-    `;
-  } else if (q.type === "learning") {
-    html += `
-      <p class="fs-5">📖 Xem - ghi nhớ ký hiệu: <strong>${q.video.title}</strong></p>
-      <div class="mx-auto text-center" style="width: 800px; max-width: 100%;">
-        <video controls src="${q.video.url}" class="rounded shadow mb-3 w-100" style="max-height: 400px; object-fit: contain;"></video>
-        <div class="d-flex justify-content-center">
-          <button onclick="nextQuestion()" class="btn btn-primary px-4">➡️ Tiếp theo</button>
+        <div class="col-md-6">
+          <div class="card p-4 shadow-sm h-100 d-flex flex-column justify-content-center">
+            <label class="form-label">🎯 Kết quả dự đoán:</label>
+            <input type="text" id="output" class="form-control fs-4 text-center mb-3">
+            <div class="d-flex justify-content-center gap-3 mb-3">
+              <button onclick="checkTextAnswer()" class="btn btn-success px-4" id="submit-btn">✅ Kiểm tra</button>
+              <button onclick="clearLastResult()" class="btn btn-outline-secondary px-4">🗑 Xoá từ</button>
+            </div>
+            <div class="text-center">
+              <button id="next-btn" onclick="nextQuestion()" class="btn btn-primary px-4 d-none">➡️ Tiếp theo</button>
+            </div>
+          </div>
         </div>
       </div>
     `;
   }
+  else if (q.type === "video" || q.type === "learning") {
+    html += `
+      <p class="fs-5">${q.type === 'video' ? '📺 Xem video và nhập ký hiệu bạn thấy:' : '📖 Xem - ghi nhớ ký hiệu:'} <strong>${q.video.title}</strong></p>
+      <div class="mx-auto text-center" style="width: 800px; max-width: 100%;">
+        <video controls src="${q.video.url}" class="rounded shadow mb-3 w-100" style="max-height: 400px; object-fit: contain;"></video>
+        ${q.type === 'video' ? `
+          <input type="text" id="text-answer" class="form-control fs-5 text-center mb-3" placeholder="Nhập đáp án...">
+          <div class="d-flex justify-content-center gap-3 mb-3">
+            <button onclick="checkVideoAnswer('${q.video.title}')" class="btn btn-success px-4" id="submit-btn">✅ Kiểm tra</button>
+            <button id="next-btn" onclick="nextQuestion()" class="btn btn-primary px-4 d-none">➡️ Tiếp theo</button>
+          </div>
+        ` : `
+          <div class="d-flex justify-content-center mb-3">
+            <button onclick="nextQuestion()" class="btn btn-primary px-4">➡️ Tiếp theo</button>
+          </div>
+        `}
+      </div>
+    `;
+  }
+  
 
   html += `</div>`;
   questionArea.innerHTML = html;
